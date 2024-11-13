@@ -47,43 +47,6 @@ export const wishas = () => {
             });
         });
     };
-    
-    const createReplyForm = (parentId) => `
-        <form class="reply-form" data-parent-id="${parentId}">
-            <input type="text" name="name" placeholder="Nama" required>
-            <textarea name="message" placeholder="Balas komentar..."></textarea>
-            <button type="submit">Kirim Balasan</button>
-        </form>
-    `;
-
-    const listItemReply = (data) => {
-        const name = formattedName(data.name);
-        const newDate = formattedDate(data.date);
-        let date = "";
-
-        if (newDate.days < 1) {
-            if (newDate.hours < 1) {
-                date = `${newDate.minutes} menit yang lalu`;
-            } else {
-                date = `${newDate.hours} jam, ${newDate.minutes} menit yang lalu`
-            }
-        } else {
-            date = `${newDate.days} hari, ${newDate.hours} jam yang lalu`;
-        }
-
-        return `
-            <li class="reply" data-aos="zoom-in" data-aos-duration="1000">
-                <div style="background-color:${data.color}">
-                    ${data.name.charAt(0).toUpperCase}
-                </div>
-                <div>
-                    <h4>${name}</h4>
-                    <p>${date}</p>
-                    <p>${data.message}</p>
-                </div>
-            </li>
-        `;
-    };
 
     const listItemComentar = (data) => {
         const name = formattedName(data.name);
@@ -106,54 +69,8 @@ export const wishas = () => {
                          <h4>${name}</h4>
                          <p>${date} <br>${data.status}</p>
                          <p>${data.message}</p>
-                         <div class="replies-container">
-                            ${data.replies ? data.replies.map(reply => listItemReply(reply)).join('') : ''}
-                         </div>
                      </div>
                  </li>`;
-    };
-
-    const handleReplySubmit = async(event, parentId)=> {
-        event.preventDefault();
-        const form = event.target;
-        const replyButton = form.previousElementSibling;
-        const repliesContainer = form.nextElementSibling;
-
-        const reply = {
-            id: generateRandomId(),
-            parentId: parentId,
-            name: form.name.value,
-            message: form.message.value,
-            date: getCurrentDateTime(),
-            color: generateRandomColor(),
-        };
-
-        try {
-            await comentarService.addReply(reply);
-            repliesContainer.insertAdjacentHTML('beforeend', listItemReply(reply));
-            form.remove();
-            replyButton.style.display = 'block';
-        } catch (error) {
-            console.error('Reply error:', error);
-        }
-    };
-
-    const attachReplyListeners = () => {
-        containerComentar.querySelectorAll('.reply-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const commentItem = e.target.closest('li');
-                const parentId = commentItem.dataset.commentId;
-
-                commentItem.querySelectorAll('.reply-form').forEach(form => form.remove());
-
-                const replyForm = createReplyForm(parentId);
-                button.insertAdjacentHTML('afterend', replyForm);
-                button.style.display = 'none';
-
-                const form = commentItem.querySelectorAll('.reply-form');
-                form.addEventListener('submit', (e) => handleReplySubmit(e, parentId));
-            });
-        });
     };
 
     let lengthComentar;
@@ -173,9 +90,6 @@ export const wishas = () => {
             renderElement(comentar.slice(startIndex, endIndex), containerComentar, listItemComentar);
             peopleComentar.textContent = `${comentar.length} Orang telah mengucapkan`;
             pageNumber.textContent = '1';
-            
-            attachReplyListeners();
-
         } catch (error) {
             return `Error : ${error.message}`;
         }
@@ -261,4 +175,3 @@ export const wishas = () => {
     initialComentar().then();
     initialBank();
 };
-
