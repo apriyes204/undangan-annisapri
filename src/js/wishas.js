@@ -84,6 +84,7 @@ export const wishas = () => {
             const response = await comentarService.getComentar();
             const {comentar} = response;
 
+
             lengthComentar = comentar.length;
             comentar.reverse();
 

@@ -48,3 +48,15 @@
     right: 8rem;
     top: 22rem;
 }
+
+/* Gaya default untuk layar kecil (sm) */
+masjid-ramlie {
+    width: 100%;
+}
+
+/* Gaya khusus untuk layar medium (md) ke atas */
+@media (min-width: 768px) {
+    .masjid-ramlie {
+        width: 25%;
+    }
+}
