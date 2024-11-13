@@ -7,13 +7,28 @@
         bottom: -5rem;
     }
 
-    .masjid-ramlie {
-        width: 100%;
-        margin-top: 2rem;
-        border-radius: 15px;
-        box-shadow: 10px 15px 8px rgba(0, 0, 0, 0.1)
+    .alamat-give {
+        padding: 35px 30px 20px !important;
     }
     
+    .maps-give {
+        margin: 0; padding:0; width:100%
+    }
+
+    .iframe-maps {
+        width: 100%;
+        max-width: 600px;
+        height: 250px;
+        border: 0;
+        margin: 10px 0;
+        border-radius: 10px;
+        box-shadow: 7px 7px rgba(0, 0, 0, 0.1);
+    }
+    
+    .masjid-ramlie {
+        width: 100%;
+    }
+
     .bride, .time{
         padding: 6rem 1.4rem 8rem;
     }
