@@ -7,6 +7,13 @@
         bottom: -5rem;
     }
 
+    .masjid-ramlie {
+        width: 100%;
+        margin-top: 2rem;
+        border-radius: 15px;
+        box-shadow: 10px 15px 8px rgba(0, 0, 0, 0.1)
+    }
+    
     .bride, .time{
         padding: 6rem 1.4rem 8rem;
     }
@@ -14,7 +21,7 @@
     .bride h2, .bride h3 {
         font-size: 1.8rem;
     }
-
+    
     .bride i:nth-of-type(1) {
         right: 1.4rem;
         top: 2.6rem;
