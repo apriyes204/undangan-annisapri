@@ -13,7 +13,7 @@ export const data = {
             name: "Annisa Sakinah Qur'ani",
             child: 'Putri ke 2',
             father: 'Kodaryanto',
-            mother: 'Nurjani',
+            mother: 'Nurjani (alm.)',
             image: '../src/assets/images/ce.png'
         },
 
