@@ -41,10 +41,14 @@ export const home = () => {
         const now = new Date().getTime();
         const distance = endTime - now;
 
+        // console.log('Time difference (ms):', distance);
+
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // console.log('Calculated time:', {days, hours, minutes, seconds});
 
         if (distance < 0) {
             clearInterval(intervalId);
@@ -56,8 +60,11 @@ export const home = () => {
 
     const startCountdown = (homeTime, timeData) => {
         const {year, month, date} = timeData.marriage;
-        const endTime = new Date(`${String(year)}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}T00:00:00`);
+        // const endTime = new Date(`${String(year)}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}T00:00:00`);
+        const endTime = new Date(`${String(year)}-${String(monthNameToNumber(month)).padStart(2, '0')}-${String(date).padStart(2, '0')}T08:00:00+07:00`);
 
+        console.log('End Time: ', endTime);
+        // console.log('current time:', new Date());
         updateCountdown(endTime, homeTime);
         setInterval(() => updateCountdown(endTime, homeTime), 1000);
     };
